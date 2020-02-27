@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     private ZamAd zamAd;
     private Button loadadBtn;
     private TextView adslog;
+    private boolean isadloaded=false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +43,11 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             if(!mInterstitialAd.isLoading())
-            loadads();
+            if(isadloaded){
+                mInterstitialAd.show();
+            }else{
+                loadads();
+            }
         }
     };
 
@@ -53,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAdClosed() {
                 super.onAdClosed();
+                adslog.setText("");
+                loadadBtn.setText("LOAD ADS");
+                isadloaded=false;
             }
 
             @Override
@@ -71,6 +80,10 @@ public class MainActivity extends AppCompatActivity {
             public void onAdLoaded() {
                 super.onAdLoaded();
                 adslog.setText("Loaded !");
+                loadadBtn.setText("SHOW ADS");
+                isadloaded=true;
+
+
             }
 
             @Override
@@ -81,7 +94,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAdImpression() {
                 super.onAdImpression();
+                adslog.setText("");
+                loadadBtn.setText("LOAD ADS");
+                isadloaded=false;
+
             }
+
         });
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
