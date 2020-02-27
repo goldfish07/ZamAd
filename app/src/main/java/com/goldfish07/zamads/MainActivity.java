@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
             public void onInitializationComplete(InitializationStatus initializationStatus) {}
         });
         zamAd = new ZamAd(this);
+        zamAd.initialize();
         mInterstitialAd = new InterstitialAd(this);
         mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
         loadadBtn.setOnClickListener(onClickListener);
