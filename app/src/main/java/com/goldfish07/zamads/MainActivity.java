@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.github.zamad.ZamAd;
 import com.google.android.gms.ads.AdListener;
@@ -18,11 +19,13 @@ public class MainActivity extends AppCompatActivity {
     private InterstitialAd mInterstitialAd;
     private ZamAd zamAd;
     private Button loadadBtn;
+    private TextView adslog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         loadadBtn = findViewById(R.id.loadadsBtn);
+        adslog = findViewById(R.id.adslogging);
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {}
@@ -44,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void loadads(){
         if(mInterstitialAd.isLoading())
+            adslog.setText("Loading...");
 
         mInterstitialAd.setAdListener(new AdListener(){
             @Override
@@ -66,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAdLoaded() {
                 super.onAdLoaded();
+                adslog.setText("Loaded !");
             }
 
             @Override
@@ -80,6 +85,13 @@ public class MainActivity extends AppCompatActivity {
         });
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(mInterstitialAd.isLoaded())
+        adslog.setText("Loaded!");
     }
 
     @Override
