@@ -1,15 +1,14 @@
 apply plugin: 'com.android.library'
-
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
 
 
     defaultConfig {
-        minSdkVersion 15
+        minSdkVersion 14
         targetSdkVersion 29
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
@@ -33,3 +32,32 @@ dependencies {
     implementation 'com.google.android.gms:play-services-ads:18.3.0'
 
 }
+
+ext {
+    bintrayRepo = 'ZamAds' // Repo name in bintray dashboard
+    bintrayName = 'com.github.goldfish.zamad' // package name of the bintray repo
+
+    publishedGroupId = 'com.github.goldfish.zamad'   // this is the ID we want to see in implementation line
+    libraryName = 'ZamAds'     // this is the module name of library
+    artifact = 'ZamAds'        // this is the artifact we want to see in implementation line
+
+    libraryDescription = 'tiny library to control show ad actions' // description of library
+
+    siteUrl = 'https://github.com/goldfish07/ZamAd'    // git repo url
+    gitUrl = 'https://github.com/goldfish07/ZamAd.git' // git repo vcs url
+
+    libraryVersion = '1.0.0'      // library version
+
+    developerId = 'goldfish07'                // This is your bintray username
+    developerName = 'Ayush Bisht'              // Developer's name
+    developerEmail = 'ayushbisht5663@gmail.com'                // Developer's email
+
+    licenseName = 'The Apache Software License, Version 2.0'  // for example, The Apache Software License, Version 2.0
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'   // for example, http://www.apache.org/licenses/LICENSE-2.0.txt
+    allLicenses = ["Apache-2.0"]    // array of licenses, for example, ["Apache-2.0"]
+}
+
+
+
+
+apply from: 'publish.gradle'

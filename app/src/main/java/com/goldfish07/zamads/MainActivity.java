@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.github.zamad.ZamAd;
+import com.github.goldfish.zamad.ZamAd;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAdOpened() {
                 super.onAdOpened();
-                zamAd.onClicked(1,null);
+                zamAd.onClicked(1);
             }
 
             @Override
