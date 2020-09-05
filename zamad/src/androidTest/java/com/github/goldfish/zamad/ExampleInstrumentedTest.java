@@ -1,4 +1,4 @@
-package com.github.zamad;
+package com.github.goldfish.zamad;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.github.zamad.test", appContext.getPackageName());
+        assertEquals("com.github.goldfish.zamad.test", appContext.getPackageName());
     }
 }

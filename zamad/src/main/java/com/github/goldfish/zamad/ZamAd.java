@@ -1,4 +1,4 @@
-package com.github.zamad;
+package com.github.goldfish.zamad;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -14,7 +14,7 @@ public class ZamAd implements ClickListener {
     private static String ZAM_ADS_KEY="ZamAds";
     private int click_count = 0;
     //private static int min_click = 1;
-    private static int max_click = 2;
+    private static int max_click = 3;
     private boolean isad_disabled=false;
     private SharedPreferences prefs;
     private SharedPreferences.Editor editor;
@@ -26,10 +26,9 @@ public class ZamAd implements ClickListener {
         editor = prefs.edit();
     }
 
-    public ZamAd initialize(){
+    public void initialize(){
         click_count = prefs.getInt("click_count",click_count);
         isad_disabled = prefs.getBoolean("disable_ads",isad_disabled);
-        return this;
     }
 
     @Override
@@ -41,6 +40,13 @@ public class ZamAd implements ClickListener {
 
     }
 
+
+    @Override
+    public void onClicked(int count) {
+        click_count +=1;
+        editor.putInt("click_count",count).apply();
+            check_ClickThreshold();
+    }
 
     @Override
     public void onDestroyClickReset() {
@@ -61,6 +67,12 @@ public class ZamAd implements ClickListener {
                 adView.destroy();
 
             }
+            editor.putBoolean("disable_ads", true).apply();
+        }
+    }
+
+    public void check_ClickThreshold(){
+        if(getClickedCount()>max_click){
             editor.putBoolean("disable_ads", true).apply();
         }
     }

@@ -1,4 +1,4 @@
-package com.github.zamad;
+package com.github.goldfish.zamad;
 
 import org.junit.Test;
 
